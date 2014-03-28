@@ -3,6 +3,7 @@
 
 describe("init", function() {
     var nupricer, errors;
+    var validPrices = ['$12', 'CAD12', '12', '12.12', 'USD12.12'];
 
     beforeEach(function() {
         nupricer = require('../lib/nupricer.js');
@@ -19,9 +20,21 @@ describe("init", function() {
         expect(typeof nupricer.calculate('$1299.99', '3 people', 'food') === 'string').toBe(true);
     });
 
+    it("calculate outputs the price with input currency", function() {
+        expect(nupricer.calculate('$12', '1', 'food')).toContain('$');
+        expect(nupricer.calculate('CAD12', '1', 'food')).toContain('CAD');
+        expect(nupricer.calculate('12', '1', 'food')).not.toContain('$')
+        expect(nupricer.calculate('12', '1', 'food')).not.toContain('CAD')
+    });
+
+    it("calculate outputs valid price", function() {
+        for(var i=0; i < validPrices.length; ++i) {
+            expect(nupricer.checkPriceFormat(nupricer.calculate(validPrices[i], '3 people', 'food'))).toBe(true);
+        }
+    });
+
     it("calculate takes valid price", function() {
         var invalidPrices = ['awef', '$aaefaw', '0000a', '$', 'CAD'];
-        var validPrices = ['$12', 'CAD12', '12', '12.12', 'USD12.12'];
 
         for(var i=0; i < invalidPrices.length; ++i) {
             expect(function() {
