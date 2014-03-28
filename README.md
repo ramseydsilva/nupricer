@@ -25,6 +25,7 @@ nupricer.calculate("$12456.95", "4 people", "books);  // Returns $13707.63
 
 ```
 cd node_modules/nupricer
+npm install  # To install dev dependency jasmine-node
 npm test
 > jasmine-node test/
 
