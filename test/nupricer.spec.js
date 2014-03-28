@@ -19,26 +19,26 @@ describe("init", function() {
         expect(typeof nupricer.calculate('$1299.99', '3 people', 'food') === 'string').toBe(true);
     });
 
-    it("calculate takes valid Price", function() {
+    it("calculate takes valid price", function() {
         var invalidPrices = ['awef', '$aaefaw', '0000a', '$', 'CAD'];
         var validPrices = ['$12', 'CAD12', '12', '12.12', 'USD12.12'];
 
         for(var i=0; i < invalidPrices.length; ++i) {
             expect(function() {
                 nupricer.calculate(invalidPrices[i], '3 people', 'food');
-            }).toThrow(new errors.InvalidPriceError);
+            }).toThrow(errors.InvalidPriceError);
         }
 
         for(var i=0; i < validPrices.length; ++i) {
             expect(function() {
                 nupricer.calculate(validPrices[i], '3 people', 'food');
-            }).not.toThrow(new errors.InvalidPriceError);
+            }).not.toThrow(errors.InvalidPriceError);
         }
     });
 
-    it("calculate takes valid number of Workers", function() {
-        var validWorkers = ['1', '1 person', '1person', '0', '2 people', '2 good workers'];
-        var invalidWorkers = ['many workers', 'no workers', '', '12.12'];
+    it("calculate takes valid number of workers", function() {
+        var validWorkers = ['1', '1 person', '1person', '0', '2 people', '2 good workers', 'workers: 100 people', '-2'];
+        var invalidWorkers = ['many workers', 'none', '', '12.12', '12 workers or 20', '12 20'];
 
         for(var i=0; i < invalidWorkers.length; ++i) {
             expect(function() {
