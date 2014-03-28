@@ -40,13 +40,13 @@ describe("calculations", function() {
     it("For food, there is a 13% markup", function() {
         var outputPriceFloat = nupricer.calculateFloat("$1000", "0", "food"),
             flatMarkUp = 1000 * 1.05;
-        expect(outputPriceFloat).not.toBeLessThan(flatMarkUp + (flatMarkUp * 1.13));
+        expect(outputPriceFloat).not.toBeLessThan(flatMarkUp + (flatMarkUp * 0.13));
     });
 
     it("Electronics require a 2% markup", function() {
         var outputPriceFloat = nupricer.calculateFloat("$1000", "0", "electronics"),
             flatMarkUp = 1000 * 1.05;
-        expect(outputPriceFloat).not.toBeLessThan(flatMarkUp + (flatMarkUp * 1.02));
+        expect(outputPriceFloat).not.toBeLessThan(flatMarkUp + (flatMarkUp * 0.02));
     });
 
     it("Everything else, there is no markup", function() {
