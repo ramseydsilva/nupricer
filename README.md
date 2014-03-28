@@ -1,0 +1,4 @@
+nupricer
+========
+
+Pricing JS library
