@@ -25,10 +25,18 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": ""
+    "test": "jasmine-node test/"
   },
   "devDependencies": {
     "jasmine-node": "~1.14.2"
   },
-  "keywords": []
+  "keywords": [],
+  "readme": "nupricer\n========\n\nPricing JS library\n",
+  "readmeFilename": "README.md",
+  "_id": "nupricer@0.1.0",
+  "dist": {
+    "shasum": "9162553aead985f7098aa9f2681af288d7a1b2d8"
+  },
+  "_resolved": "git://github.com/ramseydsilva/nupricer.git#46a34f88af9ad281f3df702c6c1b50923b3e0a8d",
+  "_from": "git://github.com/ramseydsilva/nupricer.git"
 }
