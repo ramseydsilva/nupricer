@@ -4,8 +4,9 @@ var nupricer = require('../lib/nupricer'),
     helpers = require('../lib/helpers');
 
 describe("calculations", function() {
-    var inputPrices = ['$12', 'CAD200', '10000', '5112.12', '0'];
-    var inputWorkers = ['12 workers', '100', '0', '564', 'People: 10'];
+
+    var inputPrices = ['$12', 'CAD200', '10000', '5112.12', '0'],
+        inputWorkers = ['12 workers', '100', '0', '564', 'People: 10'];
 
     it("Without exception, there is a flat markup on all jobs of 5%", function() {
         for(var i=0; i < inputPrices.length; ++i) {

@@ -5,7 +5,6 @@ var nupricer = require('../lib/nupricer'),
     errors = require('../lib/errors');
 
 describe("init", function() {
-    var validPrices = ['$12', 'CAD12', '12', '12.12', 'USD12.12'];
 
     it("nupricer is an object that ships calculate function", function() {
         expect(typeof nupricer === 'object').toBe(true);
@@ -25,13 +24,15 @@ describe("init", function() {
     });
 
     it("calculate outputs valid price", function() {
+        var validPrices = ['$12', 'CAD12', '12', '12.12', 'USD12.12'];
         for(var i=0; i < validPrices.length; ++i) {
             expect(helpers.checkPriceFormat(nupricer.calculate(validPrices[i], '3 people', 'food'))).toBe(true);
         }
     });
 
     it("calculate takes valid price", function() {
-        var invalidPrices = ['awef', '$aaefaw', '0000a', '$', 'CAD'];
+        var invalidPrices = ['awef', '$aaefaw', '0000a', '$', 'CAD'],
+            validPrices = ['$12', 'CAD12', '12', '12.12', 'USD12.12'];
 
         for(var i=0; i < invalidPrices.length; ++i) {
             expect(function() {
@@ -47,8 +48,8 @@ describe("init", function() {
     });
 
     it("calculate takes valid number of workers", function() {
-        var validWorkers = ['1', '1 person', '1person', '0', '2 people', '2 good workers', 'workers: 100 people', '-2'];
-        var invalidWorkers = ['many workers', 'none', '', '12.12', '12 workers or 20', '12 20'];
+        var validWorkers = ['1', '1 person', '1person', '0', '2 people', '2 good workers', 'workers: 100 people', '-2'],
+            invalidWorkers = ['many workers', 'none', '', '12.12', '12 workers or 20', '12 20'];
 
         for(var i=0; i < invalidWorkers.length; ++i) {
             expect(function() {
