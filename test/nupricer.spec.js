@@ -7,9 +7,6 @@ var nupricer = require('../lib/nupricer'),
 describe("init", function() {
     var validPrices = ['$12', 'CAD12', '12', '12.12', 'USD12.12'];
 
-    beforeEach(function() {
-    });
-
     it("nupricer is an object that ships calculate function", function() {
         expect(typeof nupricer === 'object').toBe(true);
         expect(typeof nupricer.calculate === 'function').toBe(true);
@@ -23,8 +20,8 @@ describe("init", function() {
     it("calculate outputs the price with input currency", function() {
         expect(nupricer.calculate('$12', '1', 'food')).toContain('$');
         expect(nupricer.calculate('CAD12', '1', 'food')).toContain('CAD');
-        expect(nupricer.calculate('12', '1', 'food')).not.toContain('$')
-        expect(nupricer.calculate('12', '1', 'food')).not.toContain('CAD')
+        expect(nupricer.calculate('12', '1', 'food')).not.toContain('$');
+        expect(nupricer.calculate('12', '1', 'food')).not.toContain('CAD');
     });
 
     it("calculate outputs valid price", function() {
@@ -42,7 +39,7 @@ describe("init", function() {
             }).toThrow(errors.InvalidPriceError);
         }
 
-        for(var i=0; i < validPrices.length; ++i) {
+        for(i=0; i < validPrices.length; ++i) {
             expect(function() {
                 nupricer.calculate(validPrices[i], '3 people', 'food');
             }).not.toThrow(errors.InvalidPriceError);
@@ -59,7 +56,7 @@ describe("init", function() {
             }).toThrow(errors.InvalidWorkersError);
         }
 
-        for(var i=0; i < validWorkers.length; ++i) {
+        for(i=0; i < validWorkers.length; ++i) {
             expect(function() {
                 nupricer.calculate('$12', validWorkers[i], 'food');
             }).not.toThrow(errors.InvalidWorkersError);
