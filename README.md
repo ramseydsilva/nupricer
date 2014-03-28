@@ -16,9 +16,9 @@ Then in your code you can call the library like
 ```
 var nupricer = require('nupricer');
 
-nupricer.calculate("$1000", "0", "books");  // Returns $1591.58
-nupricer.calculate("$1299.99", "3 people", "food");  // Returns $6199.81
-nupricer.calculate("$5432.00", "1 person", "drugs");  // Returns $13707.63
+nupricer.calculate("$1299.99", "3 people", "food");  // Returns $1591.58
+nupricer.calculate("$5432.00", "1 person", "drugs");  // Returns $6199.81
+nupricer.calculate("$12456.95", "4 people", "books);  // Returns $13707.63
 ```
 
 ## Tests
