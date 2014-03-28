@@ -23,31 +23,36 @@ describe("calculations", function() {
                 inputPriceFloat = helpers.getPriceFloat(inputPrice),
                 inputWorker = inputWorkers[i],
                 inputWorkerInt = helpers.getWorkersInt(inputWorker),
-                workerPercentage = 1.00 + ((inputWorkerInt * 1.2) / 100),
-                outputPriceFloat = nupricer.calculateFloat(inputPrice, inputWorker, 'food');
+                workerSurcharge = (inputWorkerInt * 1.2) / 100,
+                outputPriceFloat = nupricer.calculateFloat(inputPrice, inputWorker, 'food'),
+                flatMarkUp = inputPriceFloat * 1.05;
 
-            expect(outputPriceFloat).not.toBeLessThan(inputPriceFloat * 1.05 * workerPercentage);
+            expect(outputPriceFloat).not.toBeLessThan(flatMarkUp + (flatMarkUp * workerSurcharge));
         }
     });
 
     it("If pharmaceuticals are involved, there is an immediate 7.5% markup", function() {
-        var outputPriceFloat = nupricer.calculateFloat("$1000", "0", "drugs");
-        expect(outputPriceFloat).not.toBeLessThan(1000 * 1.05 * 1.075);
+        var outputPriceFloat = nupricer.calculateFloat("$1000", "0", "drugs"),
+            flatMarkUp = 1000 * 1.05;
+        expect(outputPriceFloat).not.toBeLessThan(flatMarkUp +  (flatMarkUp * 0.075));
     });
 
     it("For food, there is a 13% markup", function() {
-        var outputPriceFloat = nupricer.calculateFloat("$1000", "0", "food");
-        expect(outputPriceFloat).not.toBeLessThan(1000 * 1.05 * 1.13);
+        var outputPriceFloat = nupricer.calculateFloat("$1000", "0", "food"),
+            flatMarkUp = 1000 * 1.05;
+        expect(outputPriceFloat).not.toBeLessThan(flatMarkUp + (flatMarkUp * 1.13));
     });
 
     it("Electronics require a 2% markup", function() {
-        var outputPriceFloat = nupricer.calculateFloat("$1000", "0", "electronics");
-        expect(outputPriceFloat).not.toBeLessThan(1000 * 1.05 * 1.02);
+        var outputPriceFloat = nupricer.calculateFloat("$1000", "0", "electronics"),
+            flatMarkUp = 1000 * 1.05;
+        expect(outputPriceFloat).not.toBeLessThan(flatMarkUp + (flatMarkUp * 1.02));
     });
 
     it("Everything else, there is no markup", function() {
-        var outputPriceFloat = nupricer.calculateFloat("$1000", "0", "books");
-        expect(outputPriceFloat).not.toBeGreaterThan(1000 * 1.05);
+        var outputPriceFloat = nupricer.calculateFloat("$1000", "0", "books"),
+            flatMarkUp = 1000 * 1.05;
+        expect(outputPriceFloat).not.toBeGreaterThan(flatMarkUp);
     });
 
     it("Example 1: $1299.99, 3 people, food", function() {
