@@ -1,13 +1,13 @@
 'use strict';
 
+var nupricer = require('../lib/nupricer'),
+    helpers = require('../lib/helpers'),
+    errors = require('../lib/errors');
 
 describe("init", function() {
-    var nupricer, errors;
     var validPrices = ['$12', 'CAD12', '12', '12.12', 'USD12.12'];
 
     beforeEach(function() {
-        nupricer = require('../lib/nupricer.js');
-        errors = require('../lib/errors');
     });
 
     it("nupricer is an object that ships calculate function", function() {
@@ -29,7 +29,7 @@ describe("init", function() {
 
     it("calculate outputs valid price", function() {
         for(var i=0; i < validPrices.length; ++i) {
-            expect(nupricer.checkPriceFormat(nupricer.calculate(validPrices[i], '3 people', 'food'))).toBe(true);
+            expect(helpers.checkPriceFormat(nupricer.calculate(validPrices[i], '3 people', 'food'))).toBe(true);
         }
     });
 
